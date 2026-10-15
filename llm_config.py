@@ -4,12 +4,14 @@ from crewai import LLM
 
 
 def get_llm():
+    api_key = os.getenv("GROQ_API_KEY")
+
+    if not api_key:
+        raise ValueError("GROQ_API_KEY is missing from Streamlit Secrets.")
+
     return LLM(
-        model=os.getenv(
-            "GROQ_MODEL",
-            "groq/openai/gpt-oss-120b"
-        ),
-        api_key=os.getenv("GROQ_API_KEY"),
-        base_url="https://api.groq.com/openai/v1",
+        model="groq/openai/gpt-oss-120b",
+        api_key=api_key,
         temperature=0.2,
     )
+

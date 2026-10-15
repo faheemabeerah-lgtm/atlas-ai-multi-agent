@@ -7,11 +7,12 @@ def get_llm():
     api_key = os.getenv("GROQ_API_KEY")
 
     if not api_key:
-        raise ValueError("GROQ_API_KEY is missing from Streamlit Secrets.")
+        raise ValueError(
+            "GROQ_API_KEY is missing from Streamlit Secrets."
+        )
 
     return LLM(
         model="groq/openai/gpt-oss-120b",
         api_key=api_key,
         temperature=0.2,
     )
-

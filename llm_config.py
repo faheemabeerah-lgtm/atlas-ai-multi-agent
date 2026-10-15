@@ -1,21 +1,15 @@
+
 import os
 from crewai import LLM
 
-MODEL_NAME = "model = "openai/gpt-oss-120b""
-GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 
 def get_llm():
-    """Create CrewAI's LLM adapter for Groq's OpenAI-compatible endpoint."""
-    api_key = os.getenv("GROQ_API_KEY")
-    if not api_key:
-        raise RuntimeError(
-            "GROQ_API_KEY is missing. Add it in Streamlit Cloud → Settings → Secrets."
-        )
     return LLM(
-        model=MODEL_NAME,
-        base_url=GROQ_BASE_URL,
-        api_key=api_key,
-        custom_openai=True,
+        model=os.getenv(
+            "GROQ_MODEL",
+            "groq/openai/gpt-oss-120b"
+        ),
+        api_key=os.getenv("GROQ_API_KEY"),
+        base_url="https://api.groq.com/openai/v1",
         temperature=0.2,
-        max_tokens=4096,
     )

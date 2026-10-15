@@ -1,7 +1,7 @@
 import os
 from crewai import LLM
 
-MODEL_NAME = "openai/gpt-oss-120b"
+MODEL_NAME = "model = "openai/gpt-oss-120b""
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 
 def get_llm():
